@@ -12,6 +12,7 @@ class Player {
 		ALLEGRO_BITMAP *player;
 
 		int loadTicks; //How many ticks before next round
+		int ammo;
 	public:
 		bool keyShoot;
 		bool keyUp;

@@ -41,13 +41,23 @@ void Player::update(){
 
 	if(keyShoot == true){
 		if(loadTicks < 0){
-			//Effects!
-			particleSystem.addParticle(position.x,position.y,1 ,1,15,25,20,PARTICLE_CASE,false,true,(getAngle() * (180/PI)),70,100);
-			particleSystem.addParticle(position.x,position.y,25,5,20,2 ,5 ,PARTICLE_DUST,false,true,(getAngle() * (180/PI)),-20,20);
-			particleSystem.addParticle(position.x,position.y,45,5,20,2 ,5 ,PARTICLE_FIRE,false,false,(getAngle() * (180/PI)),-20,20);
+			if(ammo > 0){
+				//FIRE!
+				particleSystem.addParticle(position.x,position.y,1 ,1,15,25,20,PARTICLE_CASE,false,true,(getAngle() * (180/PI)),70,100);
+				particleSystem.addParticle(position.x,position.y,15,5,20,2 ,5 ,PARTICLE_DUST,false,true,(getAngle() * (180/PI)),-20,20);
+				particleSystem.addParticle(position.x,position.y,15,5,20,2 ,5 ,PARTICLE_FIRE,false,false,(getAngle() * (180/PI)),-20,20);
+				--ammo;
 
-			//Shooting interval
-			loadTicks = 5;
+				//Shooting interval
+				loadTicks = 3;
+			}else{
+				//RELOAD
+				ammo = 30;
+				loadTicks = 60;
+
+				particleSystem.addParticle(position.x,position.y,1 ,3,4,5,20,PARTICLE_MAG,false,true,(getAngle() * (180/PI)),70,100);
+			}
+
 		}
 	}
 

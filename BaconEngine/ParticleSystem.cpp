@@ -16,6 +16,7 @@ void ParticleSystem::init(ALLEGRO_BITMAP *bg,ALLEGRO_DISPLAY *d){
 	particle_blood = al_load_bitmap("blood.png");
 	particle_fire = al_load_bitmap("fire.png");
 	particle_dust = al_load_bitmap("dust.png");
+	particle_mag = al_load_bitmap("mag.png");
 }
 
 void ParticleSystem::addParticle(int x,int y,int count,int speedMin,int speedMax,int lifeTicksMin,int lifeTicksMax,PARTICLE_TYPE type,bool continuousDraw,bool drawOnDead){
@@ -66,6 +67,9 @@ void ParticleSystem::addParticle(int x,int y,int count,int speedMin,int speedMax
 						break;
 					case PARTICLE_FIRE:
 						particles[i].img = particle_fire;
+						break;
+					case PARTICLE_MAG:
+						particles[i].img = particle_mag;
 						break;
 				}
 

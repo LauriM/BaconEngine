@@ -9,6 +9,7 @@ enum PARTICLE_TYPE{
 	PARTICLE_BLOOD,
 	PARTICLE_FIRE,
 	PARTICLE_DUST,
+	PARTICLE_MAG,
 };
 
 class Particle {
@@ -35,6 +36,7 @@ class ParticleSystem {
 		ALLEGRO_BITMAP *particle_blood;
 		ALLEGRO_BITMAP *particle_fire;
 		ALLEGRO_BITMAP *particle_dust;
+		ALLEGRO_BITMAP *particle_mag;
 	public:
 		void init(ALLEGRO_BITMAP *bg,ALLEGRO_DISPLAY *d);
 		void addParticle(int x,int y,int count,int speedMin,int speedMax,int lifeTicksMin,int lifeTicksMax,PARTICLE_TYPE type,bool continuousDraw,bool drawOnDead);
