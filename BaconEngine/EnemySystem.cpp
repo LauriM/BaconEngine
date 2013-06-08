@@ -4,6 +4,13 @@
 EnemySystem enemySystem;
 
 void Enemy::update(Vec2<float> target){
+	//Render
+	al_draw_rotated_bitmap(img ,16 ,16 ,pos.x ,pos.y , pos.getRadianToPoint(target) ,0);
+
+	if(player.getHP() < 0){
+		return;
+	}
+
 	//Move
 	float angle = pos.getRadianToPoint(target);
 
@@ -16,8 +23,6 @@ void Enemy::update(Vec2<float> target){
 		player.applyDamage(1);
 	}
 
-	//Render
-	al_draw_rotated_bitmap(img ,16 ,16 ,pos.x ,pos.y , pos.getRadianToPoint(target) ,0);
 }
 
 void EnemySystem::init(){
@@ -121,6 +126,7 @@ void EnemySystem::calculateShot(Vec2<float> from,Vec2<float> to){
 						//KILL!
 						particleSystem.addParticle(enemies[i].pos.x,enemies[i].pos.y,25,-10,10,5,8,PARTICLE_BLOOD,true,true);
 						particleSystem.addParticle(enemies[i].pos.x,enemies[i].pos.y,10,-5,5,20,30,PARTICLE_BLOOD,false,true);
+						player.addKill();
 					}
 
 					return;

@@ -15,7 +15,7 @@ bool Player::init(){
 	keyDown  = false;
 	keyLeft  = false;
 	keyRight = false;
-
+	
 	if(player == NULL){
 		printf("Invalid media folders!");
 		return false;
@@ -27,6 +27,7 @@ bool Player::init(){
 	target.y = 0;
 
 	hp = 100;
+	killCount = 0;
 
 	printf("Player init done!");
 	return true;
@@ -141,6 +142,16 @@ void Player::applyDamage(int amount){
 
 	if(hp < 0){
 		printf("GAME OVER!\n");
+		printf("kills: %i\n",killCount);
+
 		particleSystem.addParticle(position.x,position.y,45,-10,10,15,40,PARTICLE_BLOOD,true,true);
 	}
+}
+
+int Player::getHP(){
+	return hp;
+}
+
+void Player::addKill(){
+	++killCount;
 }

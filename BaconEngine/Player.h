@@ -14,6 +14,7 @@ class Player {
 		int loadTicks; //How many ticks before next round
 		int ammo;
 		int hp;
+		int killCount;
 	public:
 		bool keyShoot;
 		bool keyUp;
@@ -32,6 +33,8 @@ class Player {
 		void applyDamage(int amount);
 
 		float getAngle();
+		int getHP();
+		void addKill();
 
 		Vec2<float> getPosition();
 };
