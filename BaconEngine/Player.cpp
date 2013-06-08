@@ -45,8 +45,8 @@ void Player::update(){
 			if(ammo > 0){
 				//FIRE!
 				particleSystem.addParticle(position.x,position.y,1 ,1,15,25,20,PARTICLE_CASE,false,true,(getAngle() * (180/PI)),70,100);
-				particleSystem.addParticle(position.x,position.y,5,5,20,2 ,5 ,PARTICLE_DUST,false,true,(getAngle() * (180/PI)),-20,20);
-				particleSystem.addParticle(position.x,position.y,5,5,20,2 ,5 ,PARTICLE_FIRE,false,false,(getAngle() * (180/PI)),-20,20);
+				particleSystem.addParticle(position.x,position.y,2,5,20,2 ,5 ,PARTICLE_DUST,false,true,(getAngle() * (180/PI)),-20,20);
+				particleSystem.addParticle(position.x,position.y,2,5,20,2 ,5 ,PARTICLE_FIRE,false,false,(getAngle() * (180/PI)),-20,20);
 				--ammo;
 
 				//Calculate the effect
@@ -57,7 +57,7 @@ void Player::update(){
 			}else{
 				//RELOAD
 				ammo = 30;
-				loadTicks = 60;
+				loadTicks = 38;
 
 				particleSystem.addParticle(position.x,position.y,1 ,3,4,5,20,PARTICLE_MAG,false,true,(getAngle() * (180/PI)),70,100);
 			}
@@ -79,6 +79,22 @@ void Player::update(){
 
 	if(keyRight == true){
 		position.x += PLAYER_SPEED;
+	}
+
+	if(position.x > SCREEN_WIDTH){
+		position.x = SCREEN_WIDTH;
+	}
+
+	if(position.x < 0){
+		position.x = 0;
+	}
+
+	if(position.y > SCREEN_HEIGHT){
+		position.y = SCREEN_HEIGHT;
+	}
+
+	if(position.y < 0){
+		position.y = 0;
 	}
 }
 

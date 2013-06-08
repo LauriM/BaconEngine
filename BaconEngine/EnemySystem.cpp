@@ -48,8 +48,31 @@ void EnemySystem::update(Vec2<float> target){
 				if(enemies[i].hp < 1){
 					//Found empty slot!
 
-					enemies[i].pos.x = randomRange(0,1000);
-					enemies[i].pos.y = randomRange(0,1000);
+					randomRange(0,3);
+
+					//default
+					enemies[i].pos.x = randomRange(-1000,0);
+					enemies[i].pos.y = randomRange(-1000,0);
+
+					switch(randomRange(0,3)){
+					case 0:
+						enemies[i].pos.x = randomRange(-1000,0);
+						enemies[i].pos.y = randomRange(-1000,0);
+						break;
+					case 1:
+						enemies[i].pos.x = randomRange(1000,2000);
+						enemies[i].pos.y = randomRange(1000,2000);
+						break;
+					case 2:
+						enemies[i].pos.x = randomRange(1000,2000);
+						enemies[i].pos.y = randomRange(-1000,0);
+						break;
+					case 3:
+						enemies[i].pos.x = randomRange(-1000,0);
+						enemies[i].pos.y = randomRange(1000,2000);
+						break;
+					}
+
 					enemies[i].hp    = 100;
 					enemies[i].img   = enemy;
 
