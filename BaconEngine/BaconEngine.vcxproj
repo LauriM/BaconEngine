@@ -84,12 +84,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EnemySystem.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Precompiled.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EnemySystem.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Precompiled.h" />

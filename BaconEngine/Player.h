@@ -29,6 +29,8 @@ class Player {
 		void setMouseY(int y);
 
 		float getAngle();
+
+		Vec2<float> getPosition();
 };
 
 #endif

@@ -96,3 +96,7 @@ void Player::setMouseY(int y){
 float Player::getAngle(){
 	return position.getRadianToPoint(target);
 }
+
+Vec2<float> Player::getPosition(){
+	return position;
+}

@@ -1,6 +1,7 @@
 #include "Precompiled.h"
 
 #include "ParticleSystem.h"
+#include "EnemySystem.h"
 #include "Player.h"
 
 int main(){
@@ -64,6 +65,8 @@ int main(){
 	/* INIT GAME STUFF */
 
 	particleSystem.init(background,display);
+	EnemySystem enemySystem;
+	enemySystem.init();
 
 	Player player;
 	player.init();
@@ -143,6 +146,7 @@ int main(){
 			al_set_target_backbuffer(display);
 			al_draw_bitmap(background,0,0,0);
 			particleSystem.update();
+			enemySystem.update(player.getPosition());
 			player.render();
 
 			al_flip_display();
