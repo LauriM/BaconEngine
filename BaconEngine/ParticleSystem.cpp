@@ -83,7 +83,6 @@ void ParticleSystem::addParticle(int x,int y,int count,int speedMin,int speedMax
 }
 
 void ParticleSystem::update(){
-	
 	for(int i = 0;i < PARTICLE_MAX;++i){
 		if(particles[i].life > 0){
 			if(particles[i].continuousDraw){
@@ -106,8 +105,6 @@ void ParticleSystem::update(){
 			}
 		}
 	}
-
-
 }
 
 void Particle::update(){

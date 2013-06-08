@@ -10,6 +10,8 @@ class Player {
 		Vec2<float> position;
 
 		ALLEGRO_BITMAP *player;
+
+		int loadTicks; //How many ticks before next round
 	public:
 		bool keyShoot;
 
