@@ -65,7 +65,6 @@ int main(){
 	/* INIT GAME STUFF */
 
 	particleSystem.init(background,display);
-	EnemySystem enemySystem;
 	enemySystem.init();
 
 	Player player;
@@ -96,12 +95,6 @@ int main(){
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
 			if(ev.mouse.button == 1){
 				player.keyShoot = true;
-
-				/* Blood effect */
-				/*
-				particleSystem.addParticle(ev.mouse.x,ev.mouse.y,25,-10,10,5,8,PARTICLE_BLOOD,true);
-				particleSystem.addParticle(ev.mouse.x,ev.mouse.y,10,-5,5,20,30,PARTICLE_BLOOD,false);
-				*/
 			}
 		}
 

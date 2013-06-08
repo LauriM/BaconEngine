@@ -49,8 +49,11 @@ void Player::update(){
 				particleSystem.addParticle(position.x,position.y,5,5,20,2 ,5 ,PARTICLE_FIRE,false,false,(getAngle() * (180/PI)),-20,20);
 				--ammo;
 
+				//Calculate the effect
+				enemySystem.calculateShot(position,target);
+
 				//Shooting interval
-				loadTicks = 3;
+				loadTicks = 5;
 			}else{
 				//RELOAD
 				ammo = 30;

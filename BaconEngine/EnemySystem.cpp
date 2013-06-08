@@ -1,4 +1,7 @@
+#include "Precompiled.h"
 #include "EnemySystem.h"
+
+EnemySystem enemySystem;
 
 void Enemy::update(Vec2<float> target){
 	//Render
@@ -55,6 +58,39 @@ void EnemySystem::update(Vec2<float> target){
 }
 
 
-void calculateShot(Vec2<float> from,Vec2<float> to){
+void EnemySystem::calculateShot(Vec2<float> from,Vec2<float> to){
+	//Tactic is to brute force the way.
+	float angle = from.getRadianToPoint(to);
 
+	Vec2<float> pos = from;
+	Vec2<float> vel;
+
+	vel.x = cos(angle) * 1;
+	vel.y = sin(angle) * 1;
+
+	int rayLen = 0;
+	while(rayLen < 800){
+		++rayLen;
+
+		pos.x += vel.x;
+		pos.y += vel.y;
+
+		for(int i = 0;i < ENEMY_MAX;++i){
+			//Check hits
+			if(enemies[i].hp > 0){
+				if(pos.getDistanceToPoint(enemies[i].pos) < 25){
+					enemies[i].hp -= 20;
+					particleSystem.addParticle(enemies[i].pos.x,enemies[i].pos.y,10,-5,5,20,30,PARTICLE_BLOOD,false,true);
+
+					if(enemies[i].hp < 1){
+						//KILL!
+						particleSystem.addParticle(enemies[i].pos.x,enemies[i].pos.y,25,-10,10,5,8,PARTICLE_BLOOD,true,true);
+						particleSystem.addParticle(enemies[i].pos.x,enemies[i].pos.y,10,-5,5,20,30,PARTICLE_BLOOD,false,true);
+					}
+
+					return;
+				}
+			}
+		}
+	}
 }
