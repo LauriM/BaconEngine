@@ -29,3 +29,4 @@ extern EnemySystem enemySystem;
 #define ENEMY_MAX 25
 
 #define PLAYER_SPEED 3
+#define ENEMY_SPEED 4

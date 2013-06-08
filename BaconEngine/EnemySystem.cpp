@@ -4,6 +4,12 @@
 EnemySystem enemySystem;
 
 void Enemy::update(Vec2<float> target){
+	//Move
+	float angle = pos.getRadianToPoint(target);
+
+	pos.x += cos(angle) * ENEMY_SPEED;
+	pos.y += sin(angle) * ENEMY_SPEED;
+
 	//Render
 	al_draw_rotated_bitmap(img ,16 ,16 ,pos.x ,pos.y , pos.getRadianToPoint(target) ,0);
 }
