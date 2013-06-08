@@ -36,6 +36,9 @@ bool Player::init(){
  * Render the player
  */
 void Player::render(){
+	if(hp < 0){
+		return;
+	}
 	al_draw_rotated_bitmap(player ,16 ,16 ,position.x ,position.y , position.getRadianToPoint(target) ,0);
 }
 
@@ -44,6 +47,10 @@ void Player::render(){
  */
 void Player::update(){
 	--loadTicks;
+
+	if(hp < 0){
+		return;
+	}
 
 	if(keyShoot == true){
 		if(loadTicks < 0){
@@ -123,4 +130,17 @@ float Player::getAngle(){
 
 Vec2<float> Player::getPosition(){
 	return position;
+}
+
+void Player::applyDamage(int amount){
+	if(hp < 0){
+		return;//Player is already dead
+	}
+
+	hp = hp - amount;
+
+	if(hp < 0){
+		printf("GAME OVER!\n");
+		particleSystem.addParticle(position.x,position.y,45,-10,10,15,40,PARTICLE_BLOOD,true,true);
+	}
 }

@@ -12,6 +12,10 @@ void Enemy::update(Vec2<float> target){
 
 	//Hit to player
 
+	if(pos.getDistanceToPoint(player.getPosition()) < 25){
+		player.applyDamage(1);
+	}
+
 	//Render
 	al_draw_rotated_bitmap(img ,16 ,16 ,pos.x ,pos.y , pos.getRadianToPoint(target) ,0);
 }

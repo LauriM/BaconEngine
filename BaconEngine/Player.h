@@ -29,6 +29,8 @@ class Player {
 		void setMouseX(int x);
 		void setMouseY(int y);
 
+		void applyDamage(int amount);
+
 		float getAngle();
 
 		Vec2<float> getPosition();
