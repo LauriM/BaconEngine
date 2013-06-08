@@ -24,3 +24,5 @@ extern ParticleSystem particleSystem;
 #define SCREEN_HEIGHT 900
 
 #define PARTICLE_MAX 150
+
+#define PLAYER_SPEED 3

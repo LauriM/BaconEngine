@@ -14,6 +14,10 @@ class Player {
 		int loadTicks; //How many ticks before next round
 	public:
 		bool keyShoot;
+		bool keyUp;
+		bool keyDown;
+		bool keyLeft;
+		bool keyRight;
 
 		bool init();
 		void update();

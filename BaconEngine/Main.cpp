@@ -50,6 +50,7 @@ int main(){
 	al_register_event_source(event_queue, al_get_display_event_source(display));
 	al_register_event_source(event_queue, al_get_timer_event_source(timer));
 	al_register_event_source(event_queue, al_get_mouse_event_source());
+	al_register_event_source(event_queue, al_get_keyboard_event_source());
 
 	background = al_create_bitmap(SCREEN_WIDTH,SCREEN_HEIGHT);
 	
@@ -104,6 +105,36 @@ int main(){
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP){
 			if(ev.mouse.button == 1){
 				player.keyShoot = false;
+			}
+		}
+
+		if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
+			if(ev.keyboard.keycode == ALLEGRO_KEY_W){
+				player.keyUp = true;
+			}
+			if(ev.keyboard.keycode == ALLEGRO_KEY_S){
+				player.keyDown = true;
+			}
+			if(ev.keyboard.keycode == ALLEGRO_KEY_A){
+				player.keyLeft = true;
+			}
+			if(ev.keyboard.keycode == ALLEGRO_KEY_D){
+				player.keyRight = true;
+			}
+		}
+
+		if(ev.type == ALLEGRO_EVENT_KEY_UP){
+			if(ev.keyboard.keycode == ALLEGRO_KEY_W){
+				player.keyUp = false;
+			}
+			if(ev.keyboard.keycode == ALLEGRO_KEY_S){
+				player.keyDown = false;
+			}
+			if(ev.keyboard.keycode == ALLEGRO_KEY_A){
+				player.keyLeft = false;
+			}
+			if(ev.keyboard.keycode == ALLEGRO_KEY_D){
+				player.keyRight = false;
 			}
 		}
 

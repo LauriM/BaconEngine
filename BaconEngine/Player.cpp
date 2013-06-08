@@ -7,6 +7,10 @@ bool Player::init(){
 	player = al_load_bitmap("player.png");
 
 	keyShoot = false;
+	keyUp    = false;
+	keyDown  = false;
+	keyLeft  = false;
+	keyRight = false;
 
 	if(player == NULL){
 		printf("Invalid media folders!");
@@ -38,13 +42,29 @@ void Player::update(){
 	if(keyShoot == true){
 		if(loadTicks < 0){
 			//Effects!
-			particleSystem.addParticle(position.x,position.y,1 ,5,15,25,20,PARTICLE_CASE,false,true,(getAngle() * (180/PI)),70,100);
+			particleSystem.addParticle(position.x,position.y,1 ,1,15,25,20,PARTICLE_CASE,false,true,(getAngle() * (180/PI)),70,100);
 			particleSystem.addParticle(position.x,position.y,25,5,20,2 ,5 ,PARTICLE_DUST,false,true,(getAngle() * (180/PI)),-20,20);
 			particleSystem.addParticle(position.x,position.y,45,5,20,2 ,5 ,PARTICLE_FIRE,false,false,(getAngle() * (180/PI)),-20,20);
 
 			//Shooting interval
 			loadTicks = 5;
 		}
+	}
+
+	if(keyUp == true){
+		position.y -= PLAYER_SPEED;
+	}
+
+	if(keyDown == true){
+		position.y += PLAYER_SPEED;
+	}
+
+	if(keyLeft == true){
+		position.x -= PLAYER_SPEED;
+	}
+
+	if(keyRight == true){
+		position.x += PLAYER_SPEED;
 	}
 }
 
