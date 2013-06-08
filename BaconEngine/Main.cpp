@@ -9,9 +9,14 @@ int main(){
 
 	/* INIT THE SYSTEM */
 
-	ALLEGRO_DISPLAY *display;
+	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
+
+	if(!al_init()){
+		printf("Allegro is bugged");
+		return 1;
+	}
 
 	display = al_create_display(1000, 900);
 	if(!display) {
@@ -24,6 +29,7 @@ int main(){
 	al_install_keyboard();
 	al_install_mouse();
 
+		
 	timer = al_create_timer(1.0 / FPS);
 	if(!timer) {
 		fprintf(stderr, "failed to create timer!\n");
@@ -46,21 +52,33 @@ int main(){
 	Player player;
 	player.init();
 
-	bool gameLoop = true;
-	while(gameLoop){
+	al_start_timer(timer);
+
+	bool redraw = true;
+	while(true){
 		ALLEGRO_EVENT ev;
 		al_wait_for_event(event_queue, &ev);
 
 		/*Process input*/
 		if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
-			gameLoop = false;
+			break;
 		}
 
-		/*Rendering stuff*/
-		player.render();
+		if (ev.type == ALLEGRO_EVENT_TIMER) {
+			/*GAME LOGIC*/
+			player.update();
+			redraw = true;
+		}
 
-		al_flip_display();
-		al_clear_to_color(al_map_rgb(0,0,0));
+		if (redraw && al_event_queue_is_empty(event_queue)) {
+			/*RENDER*/
+			player.render();
+
+			al_flip_display();
+			al_clear_to_color(al_map_rgb(0,0,0));
+			redraw = false;
+		}
+
 	}
 
 	return 0;

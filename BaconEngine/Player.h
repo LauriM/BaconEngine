@@ -6,6 +6,7 @@
 class Player {
 	private:
 		Vec2<float> position;
+		Vec2<float> target; //Where the mouse is pointing basically
 
 		ALLEGRO_BITMAP *player;
 
@@ -13,6 +14,10 @@ class Player {
 		bool init();
 		void update();
 		void render();
+
+		void setMouseXY(int x,int y);
+		void setMouseX(int x);
+		void setMouseY(int y);
 };
 
 #endif
