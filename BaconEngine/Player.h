@@ -21,6 +21,7 @@ class Player {
 		bool keyDown;
 		bool keyLeft;
 		bool keyRight;
+		bool keyReload;
 
 		bool init();
 		void update();

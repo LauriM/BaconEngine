@@ -94,6 +94,14 @@ void Player::update(){
 		position.x += PLAYER_SPEED;
 	}
 
+	if(keyReload == true){
+		loadTicks = 35;
+		ammo = 30;
+
+		particleSystem.addParticle(position.x,position.y,1 ,3,4,5,20,PARTICLE_MAG,false,true,(getAngle() * (180/PI)),70,100);
+		keyReload = false;
+	}
+
 	if(position.x > SCREEN_WIDTH){
 		position.x = SCREEN_WIDTH;
 	}

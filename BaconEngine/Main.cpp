@@ -115,6 +115,9 @@ int main(){
 			if(ev.keyboard.keycode == ALLEGRO_KEY_D){
 				player.keyRight = true;
 			}
+			if(ev.keyboard.keycode == ALLEGRO_KEY_R){
+				player.keyReload = true;
+			}
 		}
 
 		if(ev.type == ALLEGRO_EVENT_KEY_UP){
