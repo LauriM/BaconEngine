@@ -15,6 +15,7 @@ class Particle {
 		Vec2<float> pos;
 		Vec2<float> velocity;
 		bool continuousDraw;
+		float rot;
 
 		ALLEGRO_BITMAP *img;
 
@@ -31,7 +32,8 @@ class ParticleSystem {
 		ALLEGRO_BITMAP *particle_blood;
 	public:
 		void init(ALLEGRO_BITMAP *bg,ALLEGRO_DISPLAY *d);
-		void addParticle(int x,int y,int count,int speedMin,int speedMax,int lifeTicks,PARTICLE_TYPE type,bool continuousDraw);
+		void addParticle(int x,int y,int count,int speedMin,int speedMax,int lifeTicksMin,int lifeTicksMax,PARTICLE_TYPE type,bool continuousDraw);
+		void addParticle(int x,int y,int count,int speedMin,int speedMax,int lifeTicksMin,int lifeTicksMax,PARTICLE_TYPE type,bool continuousDraw,float angle);
 		void update();
 };
 

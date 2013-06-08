@@ -88,14 +88,20 @@ int main(){
 
 		if (ev.type == ALLEGRO_EVENT_MOUSE_AXES || ev.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY){
 			player.setMouseXY(ev.mouse.x, ev.mouse.y);
-			particleSystem.addParticle(ev.mouse.x,ev.mouse.y,1,-10,10,20,PARTICLE_CASE,false);
+			particleSystem.addParticle(player.position.x,player.position.y,1,5,15,25,20,PARTICLE_CASE,false,(player.getAngle() * (180/PI) + randomRange(70,100) ));
 		}
 
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
 			if(ev.mouse.button == 1){
 				/* Blood effect */
-				particleSystem.addParticle(ev.mouse.x,ev.mouse.y,25,-10,10,5,PARTICLE_BLOOD,true);
-				particleSystem.addParticle(ev.mouse.x,ev.mouse.y,10,-5,5,20,PARTICLE_BLOOD,false);
+				particleSystem.addParticle(ev.mouse.x,ev.mouse.y,25,-10,10,5,8,PARTICLE_BLOOD,true);
+				particleSystem.addParticle(ev.mouse.x,ev.mouse.y,10,-5,5,20,30,PARTICLE_BLOOD,false);
+			}
+
+			if(ev.mouse.button == 2){
+				/* Shoot effect */
+				//case
+				particleSystem.addParticle(player.position.x,player.position.y,1,5,15,25,20,PARTICLE_CASE,false,(player.getAngle() * (180/PI) + randomRange(70,100) ));
 			}
 		}
 

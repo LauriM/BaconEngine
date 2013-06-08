@@ -1,5 +1,3 @@
-#include "Precompiled.h"
-
 #include "Player.h"
 
 /**
@@ -33,7 +31,6 @@ void Player::render(){
  * Apply physics and stuff to player
  */
 void Player::update(){
-	printf("target: %f %f\n",target.x,target.y);
 }
 
 
@@ -48,4 +45,8 @@ void Player::setMouseX(int x){
 
 void Player::setMouseY(int y){
 	target.y = y;
+}
+
+float Player::getAngle(){
+	return position.getRadianToPoint(target);
 }
