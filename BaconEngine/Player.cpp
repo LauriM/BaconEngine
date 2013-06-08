@@ -1,4 +1,7 @@
+#include "Precompiled.h"
 #include "Player.h"
+
+Player player;
 
 /**
  * Init the player and load the media
@@ -22,6 +25,8 @@ bool Player::init(){
 	position.y = 200;
 	target.x = 0;
 	target.y = 0;
+
+	hp = 100;
 
 	printf("Player init done!");
 	return true;

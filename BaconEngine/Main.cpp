@@ -57,7 +57,7 @@ int main(){
 	
 	al_set_target_bitmap(background);
 
-	al_clear_to_color(al_map_rgb(0,150,0));
+	al_clear_to_color(al_map_rgb(0,128,64));
 
 	al_set_target_backbuffer(display);
 
@@ -66,8 +66,6 @@ int main(){
 
 	particleSystem.init(background,display);
 	enemySystem.init();
-
-	Player player;
 	player.init();
 
 	al_start_timer(timer);

@@ -13,6 +13,7 @@ class Player {
 
 		int loadTicks; //How many ticks before next round
 		int ammo;
+		int hp;
 	public:
 		bool keyShoot;
 		bool keyUp;

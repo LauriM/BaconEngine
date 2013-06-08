@@ -13,9 +13,11 @@ int randomRange(int min,int max);
 
 #include "ParticleSystem.h"
 #include "EnemySystem.h"
+#include "Player.h"
 
 extern ParticleSystem particleSystem;
 extern EnemySystem enemySystem;
+extern Player player;
 
 #endif
 
@@ -26,7 +28,7 @@ extern EnemySystem enemySystem;
 #define SCREEN_HEIGHT 900
 
 #define PARTICLE_MAX 150
-#define ENEMY_MAX 25
+#define ENEMY_MAX 20
 
 #define PLAYER_SPEED 4
-#define ENEMY_SPEED 3
+#define ENEMY_SPEED 4
