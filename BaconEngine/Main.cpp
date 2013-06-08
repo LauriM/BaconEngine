@@ -12,13 +12,14 @@ int main(){
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
+	ALLEGRO_BITMAP *background = NULL;
 
 	if(!al_init()){
 		printf("Allegro is bugged");
 		return 1;
 	}
 
-	display = al_create_display(1000, 900);
+	display = al_create_display(SCREEN_WIDTH,SCREEN_HEIGHT);
 	if(!display) {
 		return 1;
 	}
@@ -45,6 +46,14 @@ int main(){
 	al_register_event_source(event_queue, al_get_display_event_source(display));
 	al_register_event_source(event_queue, al_get_timer_event_source(timer));
 	al_register_event_source(event_queue, al_get_mouse_event_source());
+
+	background = al_create_bitmap(SCREEN_WIDTH,SCREEN_HEIGHT);
+	
+	al_set_target_bitmap(background);
+
+	al_clear_to_color(al_map_rgb(0,150,0));
+
+	al_set_target_backbuffer(display);
 
 	/* SYSTEM INITS DONE */
 	/* INIT GAME STUFF */
@@ -76,6 +85,8 @@ int main(){
 
 		if (redraw && al_event_queue_is_empty(event_queue)) {
 			/*RENDER*/
+			al_draw_bitmap(background,0,0,0);
+
 			player.render();
 
 			al_flip_display();
