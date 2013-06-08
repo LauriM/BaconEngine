@@ -26,7 +26,7 @@ bool Player::init(){
  * Render the player
  */
 void Player::render(){
-	al_draw_rotated_bitmap(player ,10 ,10 ,position.x ,position.y , 0.5 ,0);
+	al_draw_rotated_bitmap(player ,16 ,16 ,position.x ,position.y , position.getRadianToPoint(target) ,0);
 }
 
 /**
