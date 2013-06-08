@@ -28,7 +28,7 @@ void Player::render(){
 }
 
 /**
- * Take the player input, calculate state and apply physics
+ * Apply physics and stuff to player
  */
 void Player::update(){
 }
