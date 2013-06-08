@@ -1,6 +1,8 @@
 #include "Precompiled.h"
 #include "ParticleSystem.h"
 
+ParticleSystem particleSystem;
+
 void ParticleSystem::init(ALLEGRO_BITMAP *bg,ALLEGRO_DISPLAY *d){
 	background = bg; //Reference from the main
 	display    = d; //Reference from the main

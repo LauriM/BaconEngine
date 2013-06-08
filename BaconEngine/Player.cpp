@@ -6,6 +6,8 @@
 bool Player::init(){
 	player = al_load_bitmap("player.png");
 
+	keyShoot = false;
+
 	if(player == NULL){
 		printf("Invalid media folders!");
 		return false;
@@ -31,6 +33,9 @@ void Player::render(){
  * Apply physics and stuff to player
  */
 void Player::update(){
+	if(keyShoot == true){
+		particleSystem.addParticle(position.x,position.y,1,5,15,25,20,PARTICLE_CASE,false,(getAngle() * (180/PI) + randomRange(70,100) ));
+	}
 }
 
 
