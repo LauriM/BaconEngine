@@ -1,5 +1,6 @@
 #include "Precompiled.h"
 
+#include "ParticleSystem.h"
 #include "Player.h"
 
 int main(){
@@ -58,6 +59,9 @@ int main(){
 	/* SYSTEM INITS DONE */
 	/* INIT GAME STUFF */
 
+	ParticleSystem particleSystem;
+	particleSystem.init(background,display);
+
 	Player player;
 	player.init();
 
@@ -81,12 +85,13 @@ int main(){
 
 		if (ev.type == ALLEGRO_EVENT_MOUSE_AXES || ev.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY){
 			player.setMouseXY(ev.mouse.x, ev.mouse.y);
+			particleSystem.addParticle(ev.mouse.x,ev.mouse.y,10,-10,10,60,PARTICLE_CASE);
 		}
 
 		if (redraw && al_event_queue_is_empty(event_queue)) {
 			/*RENDER*/
 			al_draw_bitmap(background,0,0,0);
-
+			particleSystem.update();
 			player.render();
 
 			al_flip_display();

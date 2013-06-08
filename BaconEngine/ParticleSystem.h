@@ -1,0 +1,37 @@
+#ifndef PARTICLESYSTEM_H
+#define PARTICLESYSTEM_H
+
+#include "Precompiled.h"
+#include "Vec2.h"
+
+enum PARTICLE_TYPE{
+	PARTICLE_CASE,
+	PARTICLE_BLOOD
+};
+
+class Particle {
+	public:
+		int life;
+		Vec2<float> pos;
+		Vec2<float> velocity;
+
+		ALLEGRO_BITMAP *img;
+
+		void update();
+};
+
+class ParticleSystem {
+	private:
+		Particle particles[PARTICLE_MAX];
+		ALLEGRO_BITMAP *background;//Referenced from the main
+		ALLEGRO_DISPLAY *display;//Referenced from the main
+
+		ALLEGRO_BITMAP *particle_case;
+		ALLEGRO_BITMAP *particle_blood;
+	public:
+		void init(ALLEGRO_BITMAP *bg,ALLEGRO_DISPLAY *d);
+		void addParticle(int x,int y,int count,int speedMin,int speedMax,int lifeTicks,PARTICLE_TYPE type);
+		void update();
+};
+
+#endif
