@@ -1,15 +1,17 @@
-#include <stdio.h>
-#include <allegro5/allegro5.h>
-#include <allegro5/allegro_image.h>
+#include "Precompiled.h"
+
+#include "Player.h"
 
 int main(){
 	printf("BaconEngine starting\n");
 	al_init();
 	al_set_new_display_flags(ALLEGRO_OPENGL);
 
+	/* INIT THE SYSTEM */
+
 	ALLEGRO_DISPLAY *display;
 
-	display = al_create_display(800, 600);
+	display = al_create_display(1000, 900);
 	if(!display) {
 		return 1;
 	}
@@ -17,28 +19,20 @@ int main(){
 	if(!al_init_image_addon()){
 		return false;
 	}
-
 	al_install_keyboard();
 
-	ALLEGRO_BITMAP *player;
+	/* SYSTEM INITS DONE */
+	/* INIT GAME STUFF */
 
-	player = al_load_bitmap("player.png");
-
-	if(player == NULL){
-		printf("Invalid media folders!");
-		return 1;
-	}
+	Player player;
+	player.init();
 
 	bool gameLoop = true;
-	gameLoop = true;
 	while(gameLoop){
-		al_draw_rotated_bitmap(player,0,0,0,0, 0 ,0);
-
-		//Flip the screen
 		al_flip_display();
-
-		//And then clear it for the next round of drawing events.
 		al_clear_to_color(al_map_rgb(0,0,0));
+
+		player.render();
 	}
 
 	return 0;
