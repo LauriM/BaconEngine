@@ -70,6 +70,10 @@ int main(){
 			redraw = true;
 		}
 
+		if (ev.type == ALLEGRO_EVENT_MOUSE_AXES || ev.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY){
+			player.setMouseXY(ev.mouse.x, ev.mouse.y);
+		}
+
 		if (redraw && al_event_queue_is_empty(event_queue)) {
 			/*RENDER*/
 			player.render();

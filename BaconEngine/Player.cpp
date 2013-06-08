@@ -33,7 +33,7 @@ void Player::render(){
  * Apply physics and stuff to player
  */
 void Player::update(){
-	printf("target: %i %i\n",target.x,target.y);
+	printf("target: %f %f\n",target.x,target.y);
 }
 
 
