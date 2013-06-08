@@ -91,7 +91,6 @@ int main(){
 
 		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
 			if(ev.mouse.button == 1){
-
 				player.keyShoot = true;
 
 				/* Blood effect */

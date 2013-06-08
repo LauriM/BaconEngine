@@ -14,13 +14,15 @@ void ParticleSystem::init(ALLEGRO_BITMAP *bg,ALLEGRO_DISPLAY *d){
 	//Lets just hope loading these works...
 	particle_case = al_load_bitmap("case.png");
 	particle_blood = al_load_bitmap("blood.png");
+	particle_fire = al_load_bitmap("fire.png");
+	particle_dust = al_load_bitmap("dust.png");
 }
 
-void ParticleSystem::addParticle(int x,int y,int count,int speedMin,int speedMax,int lifeTicksMin,int lifeTicksMax,PARTICLE_TYPE type,bool continuousDraw){
-	addParticle(x,y,count,speedMin,speedMax,lifeTicksMin,lifeTicksMax,type,continuousDraw,0.f);
+void ParticleSystem::addParticle(int x,int y,int count,int speedMin,int speedMax,int lifeTicksMin,int lifeTicksMax,PARTICLE_TYPE type,bool continuousDraw,bool drawOnDead){
+	addParticle(x,y,count,speedMin,speedMax,lifeTicksMin,lifeTicksMax,type,continuousDraw,drawOnDead,0.f,0,0);
 }
 
-void ParticleSystem::addParticle(int x,int y,int count,int speedMin,int speedMax,int lifeTicksMin,int lifeTicksMax,PARTICLE_TYPE type,bool continuousDraw,float angle){
+void ParticleSystem::addParticle(int x,int y,int count,int speedMin,int speedMax,int lifeTicksMin,int lifeTicksMax,PARTICLE_TYPE type,bool continuousDraw,bool drawOnDead,float angle,int spreadMin, int spreadMax){
 	int added = 0;
 
 	while(added < count){
@@ -40,13 +42,16 @@ void ParticleSystem::addParticle(int x,int y,int count,int speedMin,int speedMax
 				}else{
 					//The particle is directed into a direction!
 					int speed = randomRange(speedMin,speedMax);
-					printf("%f",angle);
-					particles[i].velocity.x = cos(PI*angle/180) * speed;
-					particles[i].velocity.y = sin(PI*angle/180) * speed;
+
+					float finalAngle = (PI*(angle + randomRange(spreadMin,spreadMax) )/180);
+
+					particles[i].velocity.x = cos(finalAngle) * speed;
+					particles[i].velocity.y = sin(finalAngle) * speed;
 				}
 
 				particles[i].continuousDraw = continuousDraw;
 				particles[i].rot = 0.0;
+				particles[i].drawOnDead = drawOnDead;
 
 				//Link the correct image
 				switch(type){
@@ -55,6 +60,12 @@ void ParticleSystem::addParticle(int x,int y,int count,int speedMin,int speedMax
 						break;
 					case PARTICLE_BLOOD:
 						particles[i].img = particle_blood;
+						break;
+					case PARTICLE_DUST:
+						particles[i].img = particle_dust;
+						break;
+					case PARTICLE_FIRE:
+						particles[i].img = particle_fire;
 						break;
 				}
 
@@ -86,10 +97,12 @@ void ParticleSystem::update(){
 			al_set_target_backbuffer(display);
 
 			if(particles[i].life < 1){
-				//it died! -> render the end mark
-				al_set_target_bitmap(background);
-				particles[i].update();
-				al_set_target_backbuffer(display);
+				if(particles[i].drawOnDead){
+					//it died! -> render the end mark
+					al_set_target_bitmap(background);
+					particles[i].update();
+					al_set_target_backbuffer(display);
+				}
 			}
 		}
 	}
