@@ -5,6 +5,9 @@
 
 int main(){
 	printf("BaconEngine starting\n");
+
+	srand(time(NULL));
+
 	al_init();
 	al_set_new_display_flags(ALLEGRO_OPENGL);
 
@@ -85,11 +88,20 @@ int main(){
 
 		if (ev.type == ALLEGRO_EVENT_MOUSE_AXES || ev.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY){
 			player.setMouseXY(ev.mouse.x, ev.mouse.y);
-			particleSystem.addParticle(ev.mouse.x,ev.mouse.y,10,-10,10,60,PARTICLE_CASE);
+			particleSystem.addParticle(ev.mouse.x,ev.mouse.y,1,-10,10,20,PARTICLE_CASE,false);
+		}
+
+		if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
+			if(ev.mouse.button == 1){
+				/* Blood effect */
+				particleSystem.addParticle(ev.mouse.x,ev.mouse.y,25,-10,10,5,PARTICLE_BLOOD,true);
+				particleSystem.addParticle(ev.mouse.x,ev.mouse.y,10,-5,5,20,PARTICLE_BLOOD,false);
+			}
 		}
 
 		if (redraw && al_event_queue_is_empty(event_queue)) {
 			/*RENDER*/
+			al_set_target_backbuffer(display);
 			al_draw_bitmap(background,0,0,0);
 			particleSystem.update();
 			player.render();

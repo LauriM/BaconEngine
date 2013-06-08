@@ -11,10 +11,10 @@ void ParticleSystem::init(ALLEGRO_BITMAP *bg,ALLEGRO_DISPLAY *d){
 
 	//Lets just hope loading these works...
 	particle_case = al_load_bitmap("case.png");
-	particle_blood = al_load_bitmap("case.png");
+	particle_blood = al_load_bitmap("blood.png");
 }
 
-void ParticleSystem::addParticle(int x,int y,int count,int speedMin,int speedMax,int lifeTicks,PARTICLE_TYPE type){
+void ParticleSystem::addParticle(int x,int y,int count,int speedMin,int speedMax,int lifeTicks,PARTICLE_TYPE type,bool continuousDraw){
 	int added = 0;
 
 	while(added < count){
@@ -29,6 +29,8 @@ void ParticleSystem::addParticle(int x,int y,int count,int speedMin,int speedMax
 				particles[i].velocity.x = randomRange(speedMin,speedMax);
 				particles[i].velocity.y = randomRange(speedMin,speedMax);
 
+				particles[i].continuousDraw = continuousDraw;
+
 				//Link the correct image
 				switch(type){
 					case PARTICLE_CASE:
@@ -42,22 +44,40 @@ void ParticleSystem::addParticle(int x,int y,int count,int speedMin,int speedMax
 				++added;
 				break;
 			}
-		}
 
-		break;
+			if(i == PARTICLE_MAX){
+				printf("PARTICLE_MAX TOO LOW!\n");
+				break;
+			}
+
+		}
 	}
 }
 
 void ParticleSystem::update(){
-	al_set_target_bitmap(background);
-
+	
 	for(int i = 0;i < PARTICLE_MAX;++i){
 		if(particles[i].life > 0){
+			if(particles[i].continuousDraw){
+				al_set_target_bitmap(background);
+			}else{
+				al_set_target_backbuffer(display);
+			}
+
 			particles[i].update();
+
+			al_set_target_backbuffer(display);
+
+			if(particles[i].life < 1){
+				//it died! -> render the end mark
+				al_set_target_bitmap(background);
+				particles[i].update();
+				al_set_target_backbuffer(display);
+			}
 		}
 	}
 
-	al_set_target_backbuffer(display);
+
 }
 
 void Particle::update(){
