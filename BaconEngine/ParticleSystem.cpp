@@ -17,6 +17,12 @@ void ParticleSystem::init(ALLEGRO_BITMAP *bg,ALLEGRO_DISPLAY *d){
 	particle_fire = al_load_bitmap("fire.png");
 	particle_dust = al_load_bitmap("dust.png");
 	particle_mag = al_load_bitmap("mag.png");
+
+	al_convert_mask_to_alpha(particle_case,al_map_rgb(255,0,255));
+	al_convert_mask_to_alpha(particle_blood,al_map_rgb(255,0,255));
+	al_convert_mask_to_alpha(particle_fire,al_map_rgb(255,0,255));
+	al_convert_mask_to_alpha(particle_dust,al_map_rgb(255,0,255));
+	al_convert_mask_to_alpha(particle_mag,al_map_rgb(255,0,255));
 }
 
 void ParticleSystem::addParticle(int x,int y,int count,int speedMin,int speedMax,int lifeTicksMin,int lifeTicksMax,PARTICLE_TYPE type,bool continuousDraw,bool drawOnDead){

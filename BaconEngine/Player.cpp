@@ -5,6 +5,7 @@
  */
 bool Player::init(){
 	player = al_load_bitmap("player.png");
+	al_convert_mask_to_alpha(player,al_map_rgb(255,0,255));
 
 	keyShoot = false;
 	keyUp    = false;
@@ -44,8 +45,8 @@ void Player::update(){
 			if(ammo > 0){
 				//FIRE!
 				particleSystem.addParticle(position.x,position.y,1 ,1,15,25,20,PARTICLE_CASE,false,true,(getAngle() * (180/PI)),70,100);
-				particleSystem.addParticle(position.x,position.y,15,5,20,2 ,5 ,PARTICLE_DUST,false,true,(getAngle() * (180/PI)),-20,20);
-				particleSystem.addParticle(position.x,position.y,15,5,20,2 ,5 ,PARTICLE_FIRE,false,false,(getAngle() * (180/PI)),-20,20);
+				particleSystem.addParticle(position.x,position.y,5,5,20,2 ,5 ,PARTICLE_DUST,false,true,(getAngle() * (180/PI)),-20,20);
+				particleSystem.addParticle(position.x,position.y,5,5,20,2 ,5 ,PARTICLE_FIRE,false,false,(getAngle() * (180/PI)),-20,20);
 				--ammo;
 
 				//Shooting interval
