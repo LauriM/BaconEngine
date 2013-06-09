@@ -7,15 +7,16 @@ void Enemy::update(Vec2<float> target){
 	//Render
 	al_draw_rotated_bitmap(img ,16 ,16 ,pos.x ,pos.y , pos.getRadianToPoint(target) ,0);
 
-	if(player.getHP() < 0){
-		return;
-	}
-
 	//Move
 	float angle = pos.getRadianToPoint(target);
 
-	pos.x += cos(angle) * ENEMY_SPEED;
-	pos.y += sin(angle) * ENEMY_SPEED;
+	if(player.getHP() < 0){
+		pos.x += cos(angle) * -ENEMY_SPEED;
+		pos.y += sin(angle) * -ENEMY_SPEED;
+	}else{
+		pos.x += cos(angle) * ENEMY_SPEED;
+		pos.y += sin(angle) * ENEMY_SPEED;
+	}
 
 	//Hit to player
 
@@ -125,7 +126,9 @@ void EnemySystem::calculateShot(Vec2<float> from,Vec2<float> to){
 			if(enemies[i].hp > 0){
 				if(pos.getDistanceToPoint(enemies[i].pos) < 25){
 					enemies[i].hp -= 8;
-					particleSystem.addParticle(enemies[i].pos.x,enemies[i].pos.y,10,-5,5,20,30,PARTICLE_BLOOD,false,true);
+					//TODO: FIX THIS THING HERE NOW <<<<<<<<<<<<<<<--------------
+				//	particleSystem.addParticle(enemies[i].pos.x,enemies[i].pos.y,10,-5,5,20,30,PARTICLE_BLOOD,false,true);
+					particleSystem.addParticle(enemies[i].pos.x,enemies[i].pos.y,2,5,20,2 ,5 ,PARTICLE_BLOOD,true,true,(from.getRadianToPoint(to) * (180/PI)),-20,20);
 
 					if(enemies[i].hp < 1){
 						//KILL!

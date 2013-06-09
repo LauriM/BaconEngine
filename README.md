@@ -5,6 +5,11 @@ BaconEngine is made of Bacon
 
 Its my entry to the (http://www.bacongamejam.org/jams/bacongamejam-05/)[BaconGameJam05] competition, written in c++.
 
+Requirements
+============
+
+You need redist lib from here: http://www.microsoft.com/en-us/download/details.aspx?id=30679
+
 
 AUDIO
 =====
