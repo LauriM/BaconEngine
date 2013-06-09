@@ -72,7 +72,7 @@ void Player::update(){
 			if(ammo > 0){
 				//FIRE!
 				particleSystem.addParticle(position.x,position.y,1 ,1,15,25,20,PARTICLE_CASE,false,true,(getAngle() * (180/PI)),70,100);
-				particleSystem.addParticle(position.x,position.y,2,5,20,2 ,5 ,PARTICLE_DUST,false,true,(getAngle() * (180/PI)),-20,20);
+	//			particleSystem.addParticle(position.x,position.y,2,5,20,2 ,5 ,PARTICLE_DUST,false,true,(getAngle() * (180/PI)),-20,20);
 				particleSystem.addParticle(position.x,position.y,2,5,20,2 ,5 ,PARTICLE_FIRE,false,false,(getAngle() * (180/PI)),-20,20);
 				--ammo;
 
@@ -81,10 +81,10 @@ void Player::update(){
 				enemySystem.calculateShot(position,target);
 
 				//Shooting interval
-				loadTicks = 5;
+				loadTicks = 2;
 			}else{
 				//RELOAD
-				ammo = 30;
+				ammo = 130;
 				loadTicks = 38;
 
 				al_play_sample(reload, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
@@ -112,7 +112,7 @@ void Player::update(){
 
 	if(keyReload == true){
 		loadTicks = 35;
-		ammo = 30;
+		ammo = 130;
 
 		al_play_sample(reload, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
 

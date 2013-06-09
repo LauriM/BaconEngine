@@ -124,7 +124,7 @@ void EnemySystem::calculateShot(Vec2<float> from,Vec2<float> to){
 			//Check hits
 			if(enemies[i].hp > 0){
 				if(pos.getDistanceToPoint(enemies[i].pos) < 25){
-					enemies[i].hp -= 20;
+					enemies[i].hp -= 8;
 					particleSystem.addParticle(enemies[i].pos.x,enemies[i].pos.y,10,-5,5,20,30,PARTICLE_BLOOD,false,true);
 
 					if(enemies[i].hp < 1){

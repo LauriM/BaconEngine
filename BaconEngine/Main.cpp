@@ -37,7 +37,7 @@ int main(){
 
 	mixer = al_create_mixer(44100,ALLEGRO_AUDIO_DEPTH_UINT24,ALLEGRO_CHANNEL_CONF_2);
 
-	if (!al_reserve_samples(15)){
+	if (!al_reserve_samples(30)){
 		fprintf(stderr, "failed to reserve samples!\n");
 		return -1;
 	}

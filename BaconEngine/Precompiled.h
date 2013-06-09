@@ -29,5 +29,5 @@ extern Player player;
 #define PARTICLE_MAX 150
 #define ENEMY_MAX 20
 
-#define PLAYER_SPEED 4
-#define ENEMY_SPEED 4
+#define PLAYER_SPEED 2
+#define ENEMY_SPEED 2.5
