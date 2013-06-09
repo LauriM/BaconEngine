@@ -128,7 +128,7 @@ void EnemySystem::calculateShot(Vec2<float> from,Vec2<float> to){
 					enemies[i].hp -= 8;
 					//TODO: FIX THIS THING HERE NOW <<<<<<<<<<<<<<<--------------
 				//	particleSystem.addParticle(enemies[i].pos.x,enemies[i].pos.y,10,-5,5,20,30,PARTICLE_BLOOD,false,true);
-					particleSystem.addParticle(enemies[i].pos.x,enemies[i].pos.y,2,5,20,2 ,5 ,PARTICLE_BLOOD,true,true,(from.getRadianToPoint(to) * (180/PI)),-20,20);
+					particleSystem.addParticle(enemies[i].pos.x,enemies[i].pos.y,2,5,20,4 ,8 ,PARTICLE_BLOOD,true,true,(from.getRadianToPoint(to) * (180/PI)),-20,20);
 
 					if(enemies[i].hp < 1){
 						//KILL!

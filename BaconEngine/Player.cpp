@@ -73,7 +73,7 @@ void Player::update(){
 				//FIRE!
 				particleSystem.addParticle(position.x,position.y,1 ,1,15,25,20,PARTICLE_CASE,false,true,(getAngle() * (180/PI)),70,100);
 	//			particleSystem.addParticle(position.x,position.y,2,5,20,2 ,5 ,PARTICLE_DUST,false,true,(getAngle() * (180/PI)),-20,20);
-				particleSystem.addParticle(position.x,position.y,2,5,20,2 ,5 ,PARTICLE_FIRE,false,false,(getAngle() * (180/PI)),-20,20);
+				particleSystem.addParticle(position.x,position.y,2,40,50,15 ,20 ,PARTICLE_FIRE,false,false,(getAngle() * (180/PI)),-1,1);
 				--ammo;
 
 				al_play_sample(shot, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
