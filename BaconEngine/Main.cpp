@@ -29,6 +29,8 @@ int main(){
 		return 1;
 	}
 
+	al_set_window_title(display,"Lights go out, zombies come out!");
+
 	if(!al_init_image_addon()){
 		return false;
 	}
@@ -57,7 +59,7 @@ int main(){
 	
 	al_set_target_bitmap(background);
 
-	al_clear_to_color(al_map_rgb(0,128,64));
+	al_clear_to_color(al_map_rgb(20,28,24));
 
 	al_set_target_backbuffer(display);
 
@@ -65,7 +67,7 @@ int main(){
 	/* INIT GAME STUFF */
 
 	particleSystem.init(background,display);
-	enemySystem.init();
+	enemySystem.init(display,background);
 	player.init();
 
 	al_start_timer(timer);
@@ -142,6 +144,8 @@ int main(){
 			particleSystem.update();
 			enemySystem.update(player.getPosition());
 			player.render();
+
+			/*HUD*/
 
 			al_flip_display();
 			al_clear_to_color(al_map_rgb(0,0,0));

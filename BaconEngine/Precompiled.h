@@ -3,8 +3,6 @@
 #include <allegro5/allegro_image.h>
 #include <time.h>
 
-
-
 #ifndef PRECOMPILED_H
 #define PRECOMPILED_H
 const float FPS = 60;
@@ -20,7 +18,6 @@ extern EnemySystem enemySystem;
 extern Player player;
 
 #endif
-
 
 #define PI 3.14159265359
 

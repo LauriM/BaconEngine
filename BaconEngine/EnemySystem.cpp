@@ -25,9 +25,14 @@ void Enemy::update(Vec2<float> target){
 
 }
 
-void EnemySystem::init(){
+void EnemySystem::init(ALLEGRO_DISPLAY *d, ALLEGRO_BITMAP *bg){
+	display    = d;
+	background = bg;
+	
 	enemy = al_load_bitmap("enemy.png");
+	body = al_load_bitmap("body.png");
 	al_convert_mask_to_alpha(enemy,al_map_rgb(255,0,255));
+	al_convert_mask_to_alpha(body,al_map_rgb(255,0,255));
 
 	for(int i = 0;i < ENEMY_MAX;++i){
 		enemies[i].hp = 0;
@@ -124,6 +129,12 @@ void EnemySystem::calculateShot(Vec2<float> from,Vec2<float> to){
 
 					if(enemies[i].hp < 1){
 						//KILL!
+
+						//Draw body to ground first
+						al_set_target_bitmap(background);
+						al_draw_rotated_bitmap(body,16 ,16 ,enemies[i].pos.x ,enemies[i].pos.y , randomRange(0,360) ,0);
+						al_set_target_backbuffer(display);
+
 						particleSystem.addParticle(enemies[i].pos.x,enemies[i].pos.y,25,-10,10,5,8,PARTICLE_BLOOD,true,true);
 						particleSystem.addParticle(enemies[i].pos.x,enemies[i].pos.y,10,-5,5,20,30,PARTICLE_BLOOD,false,true);
 						player.addKill();
