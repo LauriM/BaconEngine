@@ -10,6 +10,19 @@ bool Player::init(){
 	player = al_load_bitmap("player.png");
 	al_convert_mask_to_alpha(player,al_map_rgb(255,0,255));
 
+	reload = al_load_sample("reload.wav");
+	shot   = al_load_sample("shot.wav");
+
+	if(shot == NULL){
+		printf("failed to load audio shot!!!");
+		return false;
+	}
+
+	if(reload == NULL){
+		printf("failed to load audio reload!!!");
+		return false;
+	}
+
 	keyShoot = false;
 	keyUp    = false;
 	keyDown  = false;
@@ -28,6 +41,7 @@ bool Player::init(){
 
 	hp = 100;
 	killCount = 0;
+	ammo = 30;
 
 	printf("Player init done!");
 	return true;
@@ -62,6 +76,7 @@ void Player::update(){
 				particleSystem.addParticle(position.x,position.y,2,5,20,2 ,5 ,PARTICLE_FIRE,false,false,(getAngle() * (180/PI)),-20,20);
 				--ammo;
 
+				al_play_sample(shot, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
 				//Calculate the effect
 				enemySystem.calculateShot(position,target);
 
@@ -72,6 +87,7 @@ void Player::update(){
 				ammo = 30;
 				loadTicks = 38;
 
+				al_play_sample(reload, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
 				particleSystem.addParticle(position.x,position.y,1 ,3,4,5,20,PARTICLE_MAG,false,true,(getAngle() * (180/PI)),70,100);
 			}
 
@@ -97,6 +113,8 @@ void Player::update(){
 	if(keyReload == true){
 		loadTicks = 35;
 		ammo = 30;
+
+		al_play_sample(reload, 1.0, 0.0,1.0,ALLEGRO_PLAYMODE_ONCE,NULL);
 
 		particleSystem.addParticle(position.x,position.y,1 ,3,4,5,20,PARTICLE_MAG,false,true,(getAngle() * (180/PI)),70,100);
 		keyReload = false;

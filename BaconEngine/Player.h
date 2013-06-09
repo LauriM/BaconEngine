@@ -10,6 +10,8 @@ class Player {
 		Vec2<float> position;
 
 		ALLEGRO_BITMAP *player;
+		ALLEGRO_SAMPLE *shot;
+		ALLEGRO_SAMPLE *reload;
 
 		int loadTicks; //How many ticks before next round
 		int ammo;

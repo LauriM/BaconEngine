@@ -18,10 +18,28 @@ int main(){
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
 	ALLEGRO_BITMAP *background = NULL;
+	ALLEGRO_MIXER *mixer = NULL;
 
 	if(!al_init()){
 		printf("Allegro is bugged");
 		return 1;
+	}
+
+	if(!al_install_audio()){
+		fprintf(stderr, "failed to initialize audio!\n");
+		return -1;
+	}
+ 
+	if(!al_init_acodec_addon()){
+		fprintf(stderr, "failed to initialize audio codecs!\n");
+		return -1;
+	}
+
+	mixer = al_create_mixer(44100,ALLEGRO_AUDIO_DEPTH_UINT24,ALLEGRO_CHANNEL_CONF_2);
+
+	if (!al_reserve_samples(15)){
+		fprintf(stderr, "failed to reserve samples!\n");
+		return -1;
 	}
 
 	display = al_create_display(SCREEN_WIDTH,SCREEN_HEIGHT);
@@ -37,7 +55,6 @@ int main(){
 	al_install_keyboard();
 	al_install_mouse();
 
-		
 	timer = al_create_timer(1.0 / FPS);
 	if(!timer) {
 		fprintf(stderr, "failed to create timer!\n");
