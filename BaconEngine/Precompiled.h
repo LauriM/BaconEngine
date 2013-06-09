@@ -26,8 +26,8 @@ extern Player player;
 #define SCREEN_WIDTH 1000
 #define SCREEN_HEIGHT 900
 
-#define PARTICLE_MAX 150
-#define ENEMY_MAX 20
+#define PARTICLE_MAX 200
+#define ENEMY_MAX 25
 
 #define PLAYER_SPEED 2
 #define ENEMY_SPEED 2.5
